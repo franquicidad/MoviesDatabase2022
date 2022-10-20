@@ -1,4 +1,4 @@
-package com.example.moviesdatabase.presentation.ui.home
+package com.example.moviesdatabase.presentation.ui.mainMovieFragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,7 +1,6 @@
 package com.example.moviesdatabase.domain.useCases
 
 import com.example.moviesdatabase.data.repositories.topRatedRepository.TopRatedRepositoryImpl
-import com.example.moviesdatabase.data.repositories.upcomingrepository.UpcomingMoviesRepositoryImpl
 import com.example.moviesdatabase.domain.model.MoviesDto
 
 class TopRatedUseCase {

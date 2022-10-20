@@ -1,4 +1,4 @@
-package com.example.moviesdatabase.presentation.ui.home
+package com.example.moviesdatabase.presentation.ui.mainMovieFragment
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
