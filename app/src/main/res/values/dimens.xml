@@ -3,6 +3,9 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="twenty_standard_measure">20sp</dimen>
+    <dimen name="twenty_standard_measure_fifty">50sp</dimen>
     <dimen name="twenty_standard_measure_density_pixels">20dp</dimen>
     <dimen name="Fifty_density_pixels">50dp</dimen>
+    <dimen name="thirty_density_pixels">30dp</dimen>
+    <dimen name="twenty_density_pixels">20dp</dimen>
 </resources>

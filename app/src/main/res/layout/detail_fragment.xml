@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:id="@+id/detailConstraint"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/movieImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@android:drawable/ic_menu_gallery"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="@id/movieImageView"
+        app:layout_constraintEnd_toEndOf="@id/movieImageView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/movieImageView"
+        app:layout_constraintTop_toTopOf="@id/movieImageView"
+        app:layout_constraintVertical_bias="0.0">
+
+    </View>
+
+    <TextView
+        android:id="@+id/movieNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/Fifty_density_pixels"
+        android:layout_marginEnd="@dimen/Fifty_density_pixels"
+        android:text="@string/nombrepeli"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:textSize="@dimen/twenty_standard_measure"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideLineTitle" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:text="@string/lorem_ipsum"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/twenty_density_pixels"
+        android:layout_marginTop="@dimen/thirty_density_pixels"
+        android:layout_marginEnd="@dimen/twenty_density_pixels"
+        app:layout_constraintEnd_toEndOf="@id/movieNameTextView"
+        app:layout_constraintStart_toStartOf="@id/movieNameTextView"
+        app:layout_constraintTop_toBottomOf="@id/movieNameTextView" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLineTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="443dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
