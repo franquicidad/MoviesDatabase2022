@@ -11,10 +11,9 @@ class UpcomingMoviesRepositoryImpl @Inject constructor(
     private val upcomingRemoteDatasource: UpcomingRemoteDatasource,
 ): UpcomingMovieRepository {
     override suspend fun getUpcomingMoviesRepo(): List<UpcomingMovieTable> {
-        val logCater = upcominglocalDatasource.getUpcomingDatabaseMovies()
-        Log.i("LocalList",logCater.toString())
         if (upcominglocalDatasource.getUpcomingDatabaseMovies().isEmpty()) {
             val list = upcomingRemoteDatasource.getUpcomingMoviesRemoteDatasource()
+
             upcominglocalDatasource.insertUpcomingDbMovies(list.movies.map { movie ->
                 UpcomingMovieTable(
                     movie.id,

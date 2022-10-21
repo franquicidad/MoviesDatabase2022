@@ -13,27 +13,34 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object ProvideDatabase {
-    const val QUOTE_DATABASE_NAME ="movie-db"
+    const val QUOTE_DATABASE_NAME = "movie-db"
 
 
     @Singleton
     @Provides
     fun provideMovieDatabase(@ApplicationContext context: Context) =
-        Room.databaseBuilder(context,MovieDatabase::class.java,QUOTE_DATABASE_NAME).build()
+        Room.databaseBuilder(
+            context,
+            MovieDatabase::class.java,
+            QUOTE_DATABASE_NAME
+        )
+            .fallbackToDestructiveMigration()
+            .build()
+
 
     @Singleton
     @Provides
-    fun provideUpcomingDao(db:MovieDatabase) = db.upcomingMovieDao()
+    fun provideUpcomingDao(db: MovieDatabase) = db.upcomingMovieDao()
 
     @Singleton
     @Provides
-    fun provideTopRatedDao(db:MovieDatabase) = db.topRatedDao()
+    fun provideTopRatedDao(db: MovieDatabase) = db.topRatedDao()
 
     @Singleton
     @Provides
-    fun provideSpanishDao(db:MovieDatabase) = db.spanishDao()
+    fun provideSpanishDao(db: MovieDatabase) = db.spanishDao()
 
     @Singleton
     @Provides
-    fun provideNinetyDao(db:MovieDatabase) = db.ninetyDao()
+    fun provideNinetyDao(db: MovieDatabase) = db.ninetyDao()
 }

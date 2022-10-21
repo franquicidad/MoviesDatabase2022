@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-    const val BASE_URL ="http://api.themoviedb.org/3/"
+    const val BASE_URL ="https://api.themoviedb.org/3/"
 
     @Provides
     fun provideRetrofit(): MovieService {
