@@ -3,9 +3,12 @@ package com.example.moviesdatabase.data.remoteDatasource.getSpanishMoviesRemoteD
 import com.example.data.api.MovieService
 import com.example.data.api.service
 import com.example.moviesdatabase.data.model.MovieResponse
+import javax.inject.Inject
 
-class SpanishMoviesRemoteDatasourceImpl:SpanishMoviesRemoteDatasource {
+class SpanishMoviesRemoteDatasourceImpl @Inject constructor(
+    private val apiService: MovieService
+):SpanishMoviesRemoteDatasource {
     override suspend fun getSpanishMoviesRemoteDatasource(): MovieResponse {
-        return service.getSpanishMovies(MovieService.API_KEY,"es")
+        return apiService.getSpanishMovies(MovieService.API_KEY,"es")
     }
 }

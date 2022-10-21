@@ -1,15 +1,19 @@
 package com.example.moviesdatabase.data.localDatasource.topRatedLocalDatasource
 
 import com.example.moviesdatabase.MovieApp
+import com.example.moviesdatabase.data.localDatasource.MovieDatabase
 import com.example.moviesdatabase.data.localDatasource.TopRatedTable
+import javax.inject.Inject
 
-class TopRatedLocalDatasourceImpl :TopRatedLocalDatasource {
-    val app =MovieApp()
+class TopRatedLocalDatasourceImpl @Inject constructor(
+    private val room: MovieDatabase
+) : TopRatedLocalDatasource {
+
     override suspend fun insertTopRatedDbMovies(topRatedMovies: List<TopRatedTable>) {
-        app.room.topRatedDao().insertTopRatedMovies(topRatedMovies =topRatedMovies )
+        room.topRatedDao().insertTopRatedMovies(topRatedMovies = topRatedMovies)
     }
 
     override suspend fun getTopRatedDatabaseMovies(): List<TopRatedTable> {
-        return app.room.topRatedDao().getTopRatedMovies()
+        return room.topRatedDao().getTopRatedMovies()
     }
 }

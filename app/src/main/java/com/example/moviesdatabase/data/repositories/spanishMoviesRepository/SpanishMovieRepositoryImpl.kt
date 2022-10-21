@@ -1,16 +1,18 @@
 package com.example.moviesdatabase.data.repositories.spanishMoviesRepository
 
 import com.example.moviesdatabase.data.localDatasource.SpanishTable
-import com.example.moviesdatabase.data.localDatasource.spanishLocalDatasource.SpanishLocalDatasourceImpl
-import com.example.moviesdatabase.data.remoteDatasource.getSpanishMoviesRemoteDatasource.SpanishMoviesRemoteDatasourceImpl
+import com.example.moviesdatabase.data.localDatasource.spanishLocalDatasource.SpanishLocalDatasource
+import com.example.moviesdatabase.data.remoteDatasource.getSpanishMoviesRemoteDatasource.SpanishMoviesRemoteDatasource
+import javax.inject.Inject
 
-class SpanishMovieRepositoryImpl:SpanishMovieRepository {
-    private val spanishMovieLocalDatasourceImpl =SpanishLocalDatasourceImpl()
-    private val spanishMovieRemoteDatasourceImpl =SpanishMoviesRemoteDatasourceImpl()
+class SpanishMovieRepositoryImpl @Inject constructor(
+    private val spanishMovieLocalDatasource: SpanishLocalDatasource,
+    private val spanishMoviesRemoteDatasource: SpanishMoviesRemoteDatasource
+):SpanishMovieRepository {
     override suspend fun getSpanishMoviesRepository(): List<SpanishTable> {
-        if (spanishMovieLocalDatasourceImpl.getSpanishDatabaseMovies().isEmpty()) {
-            val list = spanishMovieRemoteDatasourceImpl.getSpanishMoviesRemoteDatasource()
-            spanishMovieLocalDatasourceImpl.insertSpanishDbMovies(list.movies.map { movie ->
+        if (spanishMovieLocalDatasource.getSpanishDatabaseMovies().isEmpty()) {
+            val list = spanishMoviesRemoteDatasource.getSpanishMoviesRemoteDatasource()
+            spanishMovieLocalDatasource.insertSpanishDbMovies(list.movies.map { movie ->
                 SpanishTable(
                     movie.id,
                     movie.adult,
@@ -27,9 +29,9 @@ class SpanishMovieRepositoryImpl:SpanishMovieRepository {
                     movie.vote_count,
                 )
             })
-            return spanishMovieLocalDatasourceImpl.getSpanishDatabaseMovies()
+            return spanishMovieLocalDatasource.getSpanishDatabaseMovies()
         } else {
-            return spanishMovieLocalDatasourceImpl.getSpanishDatabaseMovies()
+            return spanishMovieLocalDatasource.getSpanishDatabaseMovies()
         }
     }
 }
