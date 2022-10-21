@@ -1,12 +1,16 @@
 package com.example.moviesdatabase.domain.useCases
 
+import com.example.moviesdatabase.data.repositories.topRatedRepository.TopRatedRepository
+import com.example.moviesdatabase.data.repositories.upcomingrepository.UpcomingMovieRepository
 import com.example.moviesdatabase.data.repositories.upcomingrepository.UpcomingMoviesRepositoryImpl
 import com.example.moviesdatabase.domain.model.MoviesDto
+import javax.inject.Inject
 
-class UpcomingUseCase {
-    private val upcomingMovieRepo = UpcomingMoviesRepositoryImpl()
+class UpcomingUseCase @Inject constructor(
+    private val upcomingRepository: UpcomingMovieRepository
+) {
     suspend fun invoke(): List<MoviesDto> {
-        return upcomingMovieRepo.getUpcomingMoviesRepo().map { upcomingMovieTable ->
+        return upcomingRepository.getUpcomingMoviesRepo().map { upcomingMovieTable ->
             MoviesDto(
                 upcomingMovieTable.id,
                 upcomingMovieTable.adult,

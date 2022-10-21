@@ -1,16 +1,20 @@
 package com.example.moviesdatabase.data.repositories.ninetyThreeRepository
 
 import com.example.moviesdatabase.data.localDatasource.NinetyThreeMoviesTable
+import com.example.moviesdatabase.data.localDatasource.ninetyThreeLocalDatasource.NinetyThreeLocalDatasource
 import com.example.moviesdatabase.data.localDatasource.ninetyThreeLocalDatasource.NinetyThreeLocalDatasourceImpl
+import com.example.moviesdatabase.data.remoteDatasource.ninetyThreeRemoteDatasource.NinetyThreeRemoteDatasource
 import com.example.moviesdatabase.data.remoteDatasource.ninetyThreeRemoteDatasource.NinetythreeRemoteDatasourceImpl
+import javax.inject.Inject
 
-class NinetyThreeRepositoryImpl :NinetyThreeRepository {
-    private val ninetyThreeLocalDatasourceImpl = NinetyThreeLocalDatasourceImpl()
-    private val ninetythreeRemoteDatasourceImpl = NinetythreeRemoteDatasourceImpl()
+class NinetyThreeRepositoryImpl @Inject constructor(
+    private val ninetyThreeLocalDatasource: NinetyThreeLocalDatasource,
+    private val ninetyThreeRemoteDatasource: NinetyThreeRemoteDatasource
+) :NinetyThreeRepository {
     override suspend fun getNinetyThreeRepositoryMovies(): List<NinetyThreeMoviesTable> {
-        if (ninetyThreeLocalDatasourceImpl.getNinetyThreeDatabaseMovies().isEmpty()) {
-            val list = ninetythreeRemoteDatasourceImpl.getNinetyThreeRemoteDatasource()
-            ninetyThreeLocalDatasourceImpl.insertNinetyThreeDbMovies(list.movies.map { movie ->
+        if (ninetyThreeLocalDatasource.getNinetyThreeDatabaseMovies().isEmpty()) {
+            val list = ninetyThreeRemoteDatasource.getNinetyThreeRemoteDatasource()
+            ninetyThreeLocalDatasource.insertNinetyThreeDbMovies(list.movies.map { movie ->
                 NinetyThreeMoviesTable(
                     movie.id,
                     movie.adult,
@@ -27,9 +31,9 @@ class NinetyThreeRepositoryImpl :NinetyThreeRepository {
                     movie.vote_count,
                 )
             })
-            return ninetyThreeLocalDatasourceImpl.getNinetyThreeDatabaseMovies()
+            return ninetyThreeLocalDatasource.getNinetyThreeDatabaseMovies()
         } else {
-            return ninetyThreeLocalDatasourceImpl.getNinetyThreeDatabaseMovies()
+            return ninetyThreeLocalDatasource.getNinetyThreeDatabaseMovies()
         }
     }
 }

@@ -1,15 +1,19 @@
 package com.example.moviesdatabase.data.repositories.topRatedRepository
 
 import com.example.moviesdatabase.data.localDatasource.TopRatedTable
+import com.example.moviesdatabase.data.localDatasource.topRatedLocalDatasource.TopRatedLocalDatasource
 import com.example.moviesdatabase.data.localDatasource.topRatedLocalDatasource.TopRatedLocalDatasourceImpl
+import com.example.moviesdatabase.data.remoteDatasource.topRatedRemoteDatasource.TopRatedRemoteDatasource
 import com.example.moviesdatabase.data.remoteDatasource.topRatedRemoteDatasource.TopRatedRemoteDatasourceImpl
+import javax.inject.Inject
 
-class TopRatedRepositoryImpl:TopRatedRepository {
+class TopRatedRepositoryImpl @Inject constructor(
+    private val topRatedLocalDatasource: TopRatedLocalDatasource,
+    private val topRatedRemoteDatasource: TopRatedRemoteDatasource
+):TopRatedRepository {
     override suspend fun getTopRatedRepository(): List<TopRatedTable> {
-        val topRatedLocalDatasource = TopRatedLocalDatasourceImpl()
-        val topRatedRemoteDatasourceImpl = TopRatedRemoteDatasourceImpl()
         if (topRatedLocalDatasource.getTopRatedDatabaseMovies().isEmpty()) {
-            val list = topRatedRemoteDatasourceImpl.getTopRatedMoviesRemoteDatasource()
+            val list = topRatedRemoteDatasource.getTopRatedMoviesRemoteDatasource()
             topRatedLocalDatasource.insertTopRatedDbMovies(list.movies.map { movie ->
                 TopRatedTable(
                     movie.id,

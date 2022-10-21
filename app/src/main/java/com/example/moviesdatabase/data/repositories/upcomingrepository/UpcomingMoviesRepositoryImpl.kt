@@ -1,17 +1,21 @@
 package com.example.moviesdatabase.data.repositories.upcomingrepository
 
+import android.util.Log
 import com.example.moviesdatabase.data.localDatasource.UpcomingMovieTable
-import com.example.moviesdatabase.data.localDatasource.upcomingLocalDatasource.UpcomingLocalDatasourceImpl
-import com.example.moviesdatabase.data.remoteDatasource.upcomingRemoteDatasource.UpcomingRemoteDatasourceImpl
-import com.example.moviesdatabase.domain.model.MoviesDto
+import com.example.moviesdatabase.data.localDatasource.upcomingLocalDatasource.UpcominglocalDatasource
+import com.example.moviesdatabase.data.remoteDatasource.upcomingRemoteDatasource.UpcomingRemoteDatasource
+import javax.inject.Inject
 
-class UpcomingMoviesRepositoryImpl: UpcomingMovieRepository {
-    private val upcomingLocalDatasource = UpcomingLocalDatasourceImpl()
-    private val upcomingRemoteDatasourceImpl = UpcomingRemoteDatasourceImpl()
+class UpcomingMoviesRepositoryImpl @Inject constructor(
+    private val upcominglocalDatasource: UpcominglocalDatasource,
+    private val upcomingRemoteDatasource: UpcomingRemoteDatasource,
+): UpcomingMovieRepository {
     override suspend fun getUpcomingMoviesRepo(): List<UpcomingMovieTable> {
-        if (upcomingLocalDatasource.getUpcomingDatabaseMovies().isEmpty()) {
-            val list = upcomingRemoteDatasourceImpl.getUpcomingMoviesRemoteDatasource()
-            upcomingLocalDatasource.insertUpcomingDbMovies(list.movies.map { movie ->
+        val logCater = upcominglocalDatasource.getUpcomingDatabaseMovies()
+        Log.i("LocalList",logCater.toString())
+        if (upcominglocalDatasource.getUpcomingDatabaseMovies().isEmpty()) {
+            val list = upcomingRemoteDatasource.getUpcomingMoviesRemoteDatasource()
+            upcominglocalDatasource.insertUpcomingDbMovies(list.movies.map { movie ->
                 UpcomingMovieTable(
                     movie.id,
                     movie.adult,
@@ -28,9 +32,9 @@ class UpcomingMoviesRepositoryImpl: UpcomingMovieRepository {
                     movie.vote_count,
                 )
             })
-            return upcomingLocalDatasource.getUpcomingDatabaseMovies()
+            return upcominglocalDatasource.getUpcomingDatabaseMovies()
         } else {
-            return upcomingLocalDatasource.getUpcomingDatabaseMovies()
+            return upcominglocalDatasource.getUpcomingDatabaseMovies()
         }
     }
 }

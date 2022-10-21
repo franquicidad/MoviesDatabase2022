@@ -1,15 +1,18 @@
 package com.example.moviesdatabase.data.localDatasource.ninetyThreeLocalDatasource
 
 import com.example.moviesdatabase.MovieApp
+import com.example.moviesdatabase.data.localDatasource.MovieDatabase
 import com.example.moviesdatabase.data.localDatasource.NinetyThreeMoviesTable
+import javax.inject.Inject
 
-class NinetyThreeLocalDatasourceImpl : NinetyThreeLocalDatasource {
-    val app =MovieApp()
+class NinetyThreeLocalDatasourceImpl @Inject constructor(
+    private val room : MovieDatabase
+) : NinetyThreeLocalDatasource {
     override suspend fun insertNinetyThreeDbMovies(ninetyThreeMovies: List<NinetyThreeMoviesTable>) {
-        app.room.ninetyDao().insertNinetyThreeMovies(ninetyThreeMovies)
+        room.ninetyDao().insertNinetyThreeMovies(ninetyThreeMovies)
     }
 
     override suspend fun getNinetyThreeDatabaseMovies(): List<NinetyThreeMoviesTable> {
-        return app.room.ninetyDao().getNinetyThreeMovies()
+        return room.ninetyDao().getNinetyThreeMovies()
     }
 }

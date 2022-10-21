@@ -3,10 +3,13 @@ package com.example.moviesdatabase.data.remoteDatasource.ninetyThreeRemoteDataso
 import com.example.data.api.MovieService
 import com.example.data.api.service
 import com.example.moviesdatabase.data.model.MovieResponse
+import javax.inject.Inject
 
-class NinetythreeRemoteDatasourceImpl:NinetyThreeRemoteDatasource {
+class NinetythreeRemoteDatasourceImpl @Inject constructor(
+    private val apiService: MovieService
+):NinetyThreeRemoteDatasource {
     override suspend fun getNinetyThreeRemoteDatasource(): MovieResponse {
-        return service.getYearNinetyThreeMovies(
+        return apiService.getYearNinetyThreeMovies(
             MovieService.API_KEY,"1993"
         )
     }
