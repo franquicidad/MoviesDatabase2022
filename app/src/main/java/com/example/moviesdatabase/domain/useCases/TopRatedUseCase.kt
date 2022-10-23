@@ -1,7 +1,6 @@
 package com.example.moviesdatabase.domain.useCases
 
 import com.example.moviesdatabase.data.repositories.topRatedRepository.TopRatedRepository
-import com.example.moviesdatabase.data.repositories.topRatedRepository.TopRatedRepositoryImpl
 import com.example.moviesdatabase.domain.model.MoviesDto
 import javax.inject.Inject
 
@@ -11,7 +10,7 @@ class TopRatedUseCase @Inject constructor(
     suspend fun invoke(): List<MoviesDto> {
         return topRatedRepository.getTopRatedRepository().map { topRatedMovieTable ->
             MoviesDto(
-                topRatedMovieTable.id,
+                0,
                 topRatedMovieTable.adult,
                 topRatedMovieTable.backdrop_path,
                 topRatedMovieTable.original_language,

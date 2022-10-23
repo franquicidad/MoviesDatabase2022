@@ -1,7 +1,6 @@
 package com.example.moviesdatabase.domain.useCases
 
 import com.example.moviesdatabase.data.repositories.ninetyThreeRepository.NinetyThreeRepository
-import com.example.moviesdatabase.data.repositories.ninetyThreeRepository.NinetyThreeRepositoryImpl
 import com.example.moviesdatabase.domain.model.MoviesDto
 import javax.inject.Inject
 
@@ -11,7 +10,7 @@ class NinetyThreeMoviesUseCase @Inject constructor(
     suspend fun invoke():List<MoviesDto> {
         return ninetyThreeRepository.getNinetyThreeRepositoryMovies().map { ninetyThreeMoviesTable ->
         MoviesDto(
-            ninetyThreeMoviesTable.id,
+            0,
             ninetyThreeMoviesTable.adult,
             ninetyThreeMoviesTable.backdrop_path,
             ninetyThreeMoviesTable.original_language,

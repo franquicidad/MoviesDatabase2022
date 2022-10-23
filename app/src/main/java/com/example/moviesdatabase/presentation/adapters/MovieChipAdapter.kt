@@ -34,7 +34,7 @@ class MovieByChipAdapter(private val movieList: List<MoviesDto>): RecyclerView.A
 
             bundle = bundleOf(
                 "movieOrTv" to movieOrTv,
-                "id" to model.id,
+                "id" to model.id.toString(),
                 "movieName" to model.title,
                 "overview" to model.overview,
                 "poster" to url,

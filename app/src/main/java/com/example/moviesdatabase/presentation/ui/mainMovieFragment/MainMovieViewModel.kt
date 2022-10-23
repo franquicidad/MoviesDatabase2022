@@ -1,20 +1,16 @@
 package com.example.moviesdatabase.presentation.ui.mainMovieFragment
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.moviesdatabase.domain.EmptyMoviesContent
 import com.example.moviesdatabase.domain.model.MoviesDto
 import com.example.moviesdatabase.domain.useCases.NinetyThreeMoviesUseCase
 import com.example.moviesdatabase.domain.useCases.SpanishMoviesUseCase
 import com.example.moviesdatabase.domain.useCases.TopRatedUseCase
 import com.example.moviesdatabase.domain.useCases.UpcomingUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.supervisorScope
 import javax.inject.Inject
 
 @HiltViewModel
@@ -49,7 +45,24 @@ class MainMovieViewModel @Inject constructor(
             _recyclerUpcoming.postValue(upcomingListDto)
         }
     }
-    fun getTopRatedMovies() {
+     fun getTopRatedMovies() {
+         viewModelScope.launch {
+             topRatedListDto = topRatedUseCase.invoke()
+             _recyclerTopRated.postValue(topRatedListDto)
 
+         }
+     }
+         fun getSpanishMovies() {
+         viewModelScope.launch {
+             spanishListDto = spanishMoviesUseCase.invoke()
+             _recyclerSpanish.postValue(spanishListDto)
+         }
+    }
+
+    fun getNinetyThreeMovies(){
+        viewModelScope.launch {
+            ninetyThreeListDto = ninetyThreeMoviesUseCase.invoke()
+            _recyclerNinetyThree.postValue(ninetyThreeListDto)
+        }
     }
 }

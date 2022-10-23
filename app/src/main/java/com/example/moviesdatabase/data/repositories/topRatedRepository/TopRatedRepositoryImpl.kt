@@ -2,9 +2,7 @@ package com.example.moviesdatabase.data.repositories.topRatedRepository
 
 import com.example.moviesdatabase.data.localDatasource.TopRatedTable
 import com.example.moviesdatabase.data.localDatasource.topRatedLocalDatasource.TopRatedLocalDatasource
-import com.example.moviesdatabase.data.localDatasource.topRatedLocalDatasource.TopRatedLocalDatasourceImpl
 import com.example.moviesdatabase.data.remoteDatasource.topRatedRemoteDatasource.TopRatedRemoteDatasource
-import com.example.moviesdatabase.data.remoteDatasource.topRatedRemoteDatasource.TopRatedRemoteDatasourceImpl
 import javax.inject.Inject
 
 class TopRatedRepositoryImpl @Inject constructor(
