@@ -36,6 +36,9 @@ class MainMovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getUpcomingMovies()
+        viewModel.getTopRatedMovies()
+        viewModel.getSpanishMovies()
+        viewModel.getNinetythreeMovies()
         showSpanishRecyclerView()
 
         viewModel.recyclerUpcoming.observe(viewLifecycleOwner) { upcomingList ->

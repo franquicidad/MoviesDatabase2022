@@ -1,7 +1,6 @@
 package com.example.moviesdatabase.presentation.ui.mainMovieFragment
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.viewModelScope
 import com.example.moviesdatabase.data.mocks.ModelMocks
 import com.example.moviesdatabase.domain.useCases.NinetyThreeMoviesUseCase
 import com.example.moviesdatabase.domain.useCases.SpanishMoviesUseCase
@@ -51,11 +50,41 @@ class MainMovieViewModelTest {
     @Test
     fun `retreive upcoming list from useCase`(){
         runTest {
-            val listMoviesDto = ModelMocks.getUpcomingMovieDto()
+            val listMoviesDto = ModelMocks.getMovieDto()
             Mockito.`when`(upcomingUseCase.invoke()).thenReturn(listMoviesDto)
             mainMovieViewModel.getUpcomingMovies()
 
             assert(mainMovieViewModel.recyclerUpcoming.value == listMoviesDto)
+            }
+        }
+    @Test
+    fun `retreive top rated list from useCase`(){
+        runTest {
+            val listMoviesDto = ModelMocks.getMovieDto()
+            Mockito.`when`(topRatedUseCase.invoke()).thenReturn(listMoviesDto)
+            mainMovieViewModel.getTopRatedMovies()
+
+            assert(mainMovieViewModel.recyclerTopRated.value == listMoviesDto)
+            }
+        }
+    @Test
+    fun `retreive spanish list from useCase`(){
+        runTest {
+            val listMoviesDto = ModelMocks.getMovieDto()
+            Mockito.`when`(spanishMoviesUseCase.invoke()).thenReturn(listMoviesDto)
+            mainMovieViewModel.getSpanishMovies()
+
+            assert(mainMovieViewModel.recyclerSpanish.value == listMoviesDto)
+            }
+        }
+    @Test
+    fun `retreive ninetyThree list from useCase`(){
+        runTest {
+            val listMoviesDto = ModelMocks.getMovieDto()
+            Mockito.`when`(ninetyThreeMoviesUseCase.invoke()).thenReturn(listMoviesDto)
+            mainMovieViewModel.getNinetythreeMovies()
+
+            assert(mainMovieViewModel.recyclerNinetyThree.value == listMoviesDto)
             }
         }
     }
