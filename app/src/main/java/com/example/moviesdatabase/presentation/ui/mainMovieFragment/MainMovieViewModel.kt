@@ -43,31 +43,13 @@ class MainMovieViewModel @Inject constructor(
     private val _recyclerNinetyThree = MutableLiveData<List<MoviesDto>>()
     val recyclerNinetyThree: LiveData<List<MoviesDto>> get() = _recyclerNinetyThree
 
-    init {
-        val handler = CoroutineExceptionHandler { _, exception ->
-            Log.e("viewmodel", exception.message.toString())
-
-            if (exception is EmptyMoviesContent) {
-                // show image no data.
-            } else {
-
-            }
+    fun getUpcomingMovies(){
+        viewModelScope.launch {
+            upcomingListDto = upcomingUseCase.invoke()
+            _recyclerUpcoming.postValue(upcomingListDto)
         }
-        viewModelScope.launch(handler) {
-            supervisorScope {
-                upcomingListDto = upcomingUseCase.invoke()
-                _recyclerUpcoming.value = upcomingListDto
+    }
+    fun getTopRatedMovies() {
 
-                topRatedListDto = topRatedUseCase.invoke()
-                _recyclerTopRated.value = topRatedListDto
-
-                spanishListDto = spanishMoviesUseCase.invoke()
-                _recyclerSpanish.value = spanishListDto
-
-                ninetyThreeListDto = ninetyThreeMoviesUseCase.invoke()
-                _recyclerNinetyThree.value = ninetyThreeListDto
-            }
-
-        }
     }
 }

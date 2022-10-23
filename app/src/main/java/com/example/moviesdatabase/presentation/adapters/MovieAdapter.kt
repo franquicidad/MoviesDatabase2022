@@ -17,6 +17,7 @@ import com.example.moviesdatabase.domain.model.MoviesDto
 class MovieAdapter(private val movieList: List<MoviesDto>): RecyclerView.Adapter<MovieAdapter.Holder>() {
     private var navController: NavController? = null
     private var bundle:Bundle? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.movie_item, parent, false)

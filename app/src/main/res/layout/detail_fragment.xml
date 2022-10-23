@@ -5,6 +5,27 @@
     android:id="@+id/detailConstraint"
     android:layout_height="match_parent">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+        <Toolbar
+            android:id="@+id/toolBarDetail"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:backgroundTint="@android:color/transparent"
+            android:navigationIcon="@drawable/ic_baseline_arrow_back_white_24"
+            >
+
+        </Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
     <ImageView
         android:id="@+id/movieImageView"
         android:layout_width="match_parent"

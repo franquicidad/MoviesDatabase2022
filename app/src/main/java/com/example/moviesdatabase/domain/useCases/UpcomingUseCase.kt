@@ -9,7 +9,7 @@ import javax.inject.Inject
 class UpcomingUseCase @Inject constructor(
     private val upcomingRepository: UpcomingMovieRepository
 ) {
-    suspend fun invoke(): List<MoviesDto> {
+    suspend operator fun invoke(): List<MoviesDto> {
         return upcomingRepository.getUpcomingMoviesRepo().map { upcomingMovieTable ->
             MoviesDto(
                 upcomingMovieTable.id,
