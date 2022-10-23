@@ -38,7 +38,7 @@ class UpcomingUseCaseTest{
         runBlocking {
             //Given
             val upcomingMovieTable = ModelMocks.getListUpcomingTable()
-            val upcomingMovieDto = ModelMocks.getUpcomingMovieDto()
+            val upcomingMovieDto = ModelMocks.getMovieDto()
             val upcomingTableMapped = upcomingMovieDto.map {
                 MoviesDto(
                     0,

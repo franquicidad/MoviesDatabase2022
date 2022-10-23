@@ -53,7 +53,7 @@ object ModelMocks {
         ))
     }
 
-    fun getUpcomingMovieDto(): List<MoviesDto> {
+    fun getMovieDto(): List<MoviesDto> {
         return listOf( UpcomingMovieTable(
             0,
             adult = false,
@@ -68,7 +68,7 @@ object ModelMocks {
             video = false,
             vote_average = 5.0,
             vote_count = 5
-        )).map { upcomingMovieTable->
+        )).map {
             MoviesDto(
                 0,
                 adult = false,
