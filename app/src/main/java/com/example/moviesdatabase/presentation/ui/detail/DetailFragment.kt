@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.moviesdatabase.R
 import com.example.moviesdatabase.databinding.DetailFragmentBinding
@@ -55,12 +56,19 @@ class DetailFragment : Fragment(R.layout.detail_fragment) {
         release = arguments?.getString("release")
         backdropImage = arguments?.getString("backimage")
 
+
+
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         UpdateUI()
+        binding.toolBarDetail.setOnClickListener{
+            findNavController().popBackStack()
+        }
     }
+
 
     private fun UpdateUI() {
         with(binding){
