@@ -9,6 +9,6 @@ class SpanishMoviesRemoteDatasourceImpl @Inject constructor(
     private val apiService: MovieService
 ):SpanishMoviesRemoteDatasource {
     override suspend fun getSpanishMoviesRemoteDatasource(): MovieResponse {
-        return apiService.getSpanishMovies(MovieService.API_KEY,"es")
+        return apiService.getSpanishMovies(MovieService.API_KEY,"en-ESP")
     }
 }

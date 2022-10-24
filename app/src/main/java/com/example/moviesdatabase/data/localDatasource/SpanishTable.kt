@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "spanish")
 data class SpanishTable (
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false)
     val id: Int?,
     val adult: Boolean?,
     val backdrop_path: String?,

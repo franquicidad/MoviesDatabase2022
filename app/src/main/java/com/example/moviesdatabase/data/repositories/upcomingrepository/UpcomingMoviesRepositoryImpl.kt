@@ -13,7 +13,6 @@ class UpcomingMoviesRepositoryImpl @Inject constructor(
     override suspend fun getUpcomingMoviesRepo(): List<UpcomingMovieTable> {
         if (upcominglocalDatasource.getUpcomingDatabaseMovies().isEmpty()) {
             val list = upcomingRemoteDatasource.getUpcomingMoviesRemoteDatasource()
-
             upcominglocalDatasource.insertUpcomingDbMovies(list.movies.map { movie ->
                 UpcomingMovieTable(
                     movie.id,

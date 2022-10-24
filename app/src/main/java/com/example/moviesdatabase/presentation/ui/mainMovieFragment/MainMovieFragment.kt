@@ -58,6 +58,7 @@ class MainMovieFragment : Fragment() {
         }
 
         binding.chipByYear.setOnClickListener {
+            viewModel.getNinetyThreeMovies()
             viewModel.recyclerNinetyThree.observe(viewLifecycleOwner) { ninetyThree ->
                 binding.recyclerByChip.apply {
                     adapter = MovieByChipAdapter(ninetyThree)

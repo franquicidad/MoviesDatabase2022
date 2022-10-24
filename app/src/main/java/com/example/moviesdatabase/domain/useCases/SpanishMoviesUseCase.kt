@@ -10,7 +10,7 @@ class SpanishMoviesUseCase @Inject constructor(
     suspend fun invoke(): List<MoviesDto>{
         return spanishMovieRepository.getSpanishMoviesRepository().map { spanishTable ->
             MoviesDto(
-                0,
+                spanishTable.id,
                 spanishTable.adult,
                 spanishTable.backdrop_path,
                 spanishTable.original_language,

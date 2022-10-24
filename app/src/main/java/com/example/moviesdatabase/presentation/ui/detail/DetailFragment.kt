@@ -74,6 +74,7 @@ class DetailFragment : Fragment(R.layout.detail_fragment) {
         with(binding){
             movieNameTextView.text = movieName
             movieImageView.loadUrl(posterImage.toString())
+            detailOverview.text = overview
         }
     }
 }

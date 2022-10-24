@@ -10,7 +10,7 @@ class NinetyThreeMoviesUseCase @Inject constructor(
     suspend fun invoke():List<MoviesDto> {
         return ninetyThreeRepository.getNinetyThreeRepositoryMovies().map { ninetyThreeMoviesTable ->
         MoviesDto(
-            0,
+            ninetyThreeMoviesTable.id,
             ninetyThreeMoviesTable.adult,
             ninetyThreeMoviesTable.backdrop_path,
             ninetyThreeMoviesTable.original_language,

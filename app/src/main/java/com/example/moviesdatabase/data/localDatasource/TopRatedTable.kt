@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "top_rated")
 data class TopRatedTable(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false)
     val id: Int?,
     val adult: Boolean?,
     val backdrop_path: String?,

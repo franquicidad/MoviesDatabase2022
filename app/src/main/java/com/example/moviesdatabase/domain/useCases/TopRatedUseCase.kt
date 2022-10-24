@@ -10,7 +10,7 @@ class TopRatedUseCase @Inject constructor(
     suspend fun invoke(): List<MoviesDto> {
         return topRatedRepository.getTopRatedRepository().map { topRatedMovieTable ->
             MoviesDto(
-                0,
+                topRatedMovieTable.id,
                 topRatedMovieTable.adult,
                 topRatedMovieTable.backdrop_path,
                 topRatedMovieTable.original_language,

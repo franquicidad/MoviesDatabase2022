@@ -13,7 +13,7 @@ import com.example.moviesdatabase.data.localDatasource.upcomingLocalDatasource.U
     SpanishTable::class,
     TopRatedTable::class,
     UpcomingMovieTable::class
-    ], version = 3
+    ], version = 7
 )
 abstract class MovieDatabase : RoomDatabase() {
     abstract fun upcomingMovieDao(): UpcomingMovieDao

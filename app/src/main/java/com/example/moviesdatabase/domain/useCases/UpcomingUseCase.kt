@@ -10,7 +10,7 @@ class UpcomingUseCase @Inject constructor(
     suspend operator fun invoke(): List<MoviesDto> {
         return upcomingRepository.getUpcomingMoviesRepo().map { upcomingMovieTable ->
             MoviesDto(
-                0,
+                upcomingMovieTable.id,
                 upcomingMovieTable.adult,
                 upcomingMovieTable.backdrop_path,
                 upcomingMovieTable.original_language,

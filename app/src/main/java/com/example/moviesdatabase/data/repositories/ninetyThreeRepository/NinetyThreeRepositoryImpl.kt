@@ -1,5 +1,6 @@
 package com.example.moviesdatabase.data.repositories.ninetyThreeRepository
 
+import android.util.Log
 import com.example.moviesdatabase.data.localDatasource.NinetyThreeMoviesTable
 import com.example.moviesdatabase.data.localDatasource.ninetyThreeLocalDatasource.NinetyThreeLocalDatasource
 import com.example.moviesdatabase.data.localDatasource.ninetyThreeLocalDatasource.NinetyThreeLocalDatasourceImpl
@@ -12,7 +13,8 @@ class NinetyThreeRepositoryImpl @Inject constructor(
     private val ninetyThreeRemoteDatasource: NinetyThreeRemoteDatasource
 ) :NinetyThreeRepository {
     override suspend fun getNinetyThreeRepositoryMovies(): List<NinetyThreeMoviesTable> {
-        if (ninetyThreeLocalDatasource.getNinetyThreeDatabaseMovies().isEmpty()) {
+        if (ninetyThreeLocalDatasource.getNinetyThreeDatabaseMovies().isEmpty()||
+                ninetyThreeLocalDatasource.getNinetyThreeDatabaseMovies().size < 6) {
             val list = ninetyThreeRemoteDatasource.getNinetyThreeRemoteDatasource()
             ninetyThreeLocalDatasource.insertNinetyThreeDbMovies(list.movies.map { movie ->
                 NinetyThreeMoviesTable(
@@ -31,6 +33,9 @@ class NinetyThreeRepositoryImpl @Inject constructor(
                     movie.vote_count,
                 )
             })
+            val roomList = ninetyThreeLocalDatasource.getNinetyThreeDatabaseMovies()
+            Log.i("RoomList", roomList.size.toString())
+
             return ninetyThreeLocalDatasource.getNinetyThreeDatabaseMovies()
         } else {
             return ninetyThreeLocalDatasource.getNinetyThreeDatabaseMovies()

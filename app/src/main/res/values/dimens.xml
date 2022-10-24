@@ -8,4 +8,6 @@
     <dimen name="Fifty_density_pixels">50dp</dimen>
     <dimen name="thirty_density_pixels">30dp</dimen>
     <dimen name="twenty_density_pixels">20dp</dimen>
+    <dimen name="two_hundred_density_pixels">200dp</dimen>
+    <dimen name="three_hundred">300dp</dimen>
 </resources>

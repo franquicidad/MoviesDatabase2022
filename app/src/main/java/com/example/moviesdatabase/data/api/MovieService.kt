@@ -12,8 +12,9 @@ interface MovieService {
         const val URL_FIRST = "https://api.themoviedb.org/3/movie/popular?api_key=7d51874568317dfd0c91db399be2bdec&language=en-US"
         const val UPCOMING = "https://api.themoviedb.org/3/movie/upcoming?api_key=7d51874568317dfd0c91db399be2bdec&language=en-ESP"
         const val TOPRATED = "https://api.themoviedb.org/3/movie/top_rated?api_key=7d51874568317dfd0c91db399be2bdec&language=en-US"
-        const val ninetyThree = "https://api.themoviedb.org/3/discover/movie?api_key=7d51874568317dfd0c91db399be2bdec&sort_by=popularity.desc&primary_release_year=1993&with_watch_monetization_types=flatrate"
+        const val ninetyThree = "https://api.themoviedb.org/3/discover/movie?api_key=7d51874568317dfd0c91db399be2bdec&primary_release_year=1993"
     }
+
     @GET("discover/movie")
     suspend fun getYearNinetyThreeMovies(@Query("api_key") api_key: String?,
                                           @Query("primary_release_year") byYear:String?): MovieResponse
@@ -39,7 +40,7 @@ interface MovieService {
 }
 
 val retrofit = Retrofit.Builder()
-    .baseUrl("http://api.themoviedb.org/3/")
+    .baseUrl("https://api.themoviedb.org/3/")
     .addConverterFactory(GsonConverterFactory.create())
     .build()
 val service = retrofit.create(MovieService::class.java)
