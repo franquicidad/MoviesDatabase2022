@@ -9,6 +9,12 @@ codigo por primera vez le sea facil entender que va a suceder en una clase solo 
 funcion debe expresar una accion y lo que hace si es posible con 0 parametros max 3 y 4 lineas de codigo.Esto anterior para hacer mas facil el testing de una funcion.
 No usar muchos when en tu codigo. Generalmente muchos comentarios en un programa indica que es dificil de leer por si mismo. No repetir codigo.
 
+- Se me paso ocultar la api key. Se hace con el build config Field.
+Properties properties = new Properties()
+properties.load(project.rootProject.file("local.properties").newDataInputStream())
+
+buildConfigField "String","API_KEY","\"${properties.getProperty("API_KEY")}\""
+
 - Me falto el tema de los trailers pero solo basta consultar la documentacion de la api. En este momente no esta disponible el servicio.
 <img width="851" alt="Screen Shot 2022-10-23 at 10 04 29 PM" src="https://user-images.githubusercontent.com/28768991/197440872-b28dc76c-4235-427a-a620-8003c11ba8a1.png">
 
