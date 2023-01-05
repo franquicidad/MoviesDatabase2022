@@ -1,15 +1,14 @@
 package com.example.moviesdatabase
 
+import android.content.res.Configuration
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.moviesdatabase.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,11 +33,17 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_main_movies_fragment, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_main_movies_fragment,
+                R.id.navigation_dashboard,
+                R.id.navigation_notifications
             )
         )
         //setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController!!)
 
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
     }
 }

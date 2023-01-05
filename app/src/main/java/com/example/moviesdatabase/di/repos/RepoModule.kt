@@ -1,8 +1,7 @@
 package com.example.moviesdatabase.di.repos
 
-import android.content.Context
-import androidx.room.Room
-import com.example.moviesdatabase.data.localDatasource.MovieDatabase
+import com.example.moviesdatabase.data.connectivityManager.otherConnectivityMethods.NetworkUtils
+import com.example.moviesdatabase.data.connectivityManager.otherConnectivityMethods.NetworkUtilsImpl
 import com.example.moviesdatabase.data.localDatasource.ninetyThreeLocalDatasource.NinetyThreeLocalDatasource
 import com.example.moviesdatabase.data.localDatasource.ninetyThreeLocalDatasource.NinetyThreeLocalDatasourceImpl
 import com.example.moviesdatabase.data.localDatasource.spanishLocalDatasource.SpanishLocalDatasource
@@ -27,12 +26,9 @@ import com.example.moviesdatabase.data.repositories.topRatedRepository.TopRatedR
 import com.example.moviesdatabase.data.repositories.topRatedRepository.TopRatedRepositoryImpl
 import com.example.moviesdatabase.data.repositories.upcomingrepository.UpcomingMovieRepository
 import com.example.moviesdatabase.data.repositories.upcomingrepository.UpcomingMoviesRepositoryImpl
-import com.example.moviesdatabase.di.RoomModule
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -43,70 +39,78 @@ abstract class RepoModule {
     @Singleton
     @Binds
     abstract fun provideUpcomingRepo(
-        upcomingMoviesRepositoryImpl: UpcomingMoviesRepositoryImpl
+        upcomingMoviesRepositoryImpl: UpcomingMoviesRepositoryImpl,
     ): UpcomingMovieRepository
 
     @Singleton
     @Binds
     abstract fun provideTopRatedRepo(
-        topRatedRepositoryImpl: TopRatedRepositoryImpl
+        topRatedRepositoryImpl: TopRatedRepositoryImpl,
     ): TopRatedRepository
 
     @Singleton
     @Binds
     abstract fun provideSpanishRepo(
-        spanishRepositoryImpl: SpanishMovieRepositoryImpl
+        spanishRepositoryImpl: SpanishMovieRepositoryImpl,
     ): SpanishMovieRepository
 
     @Singleton
     @Binds
     abstract fun provideNinetyRepo(
-        ninetyThreeRepositoryImpl: NinetyThreeRepositoryImpl
+        ninetyThreeRepositoryImpl: NinetyThreeRepositoryImpl,
     ): NinetyThreeRepository
 
     @Singleton
     @Binds
     abstract fun provideUpcomingLocalDatasource(
-        upcomingLocalDatasourceImpl: UpcomingLocalDatasourceImpl
+        upcomingLocalDatasourceImpl: UpcomingLocalDatasourceImpl,
     ): UpcominglocalDatasource
+
     @Singleton
     @Binds
     abstract fun provideUpcomingRemoteDatasource(
-        upcomingRemoteDatasource: UpcomingRemoteDatasourceImpl
+        upcomingRemoteDatasource: UpcomingRemoteDatasourceImpl,
     ): UpcomingRemoteDatasource
 
     @Singleton
     @Binds
     abstract fun topRatedRemoteDatasource(
-        topRatedRemoteDatasource: TopRatedRemoteDatasourceImpl
+        topRatedRemoteDatasource: TopRatedRemoteDatasourceImpl,
     ): TopRatedRemoteDatasource
+
     @Singleton
     @Binds
     abstract fun topRatedLocalDatasource(
-        topRatedLocalDatasource: TopRatedLocalDatasourceImpl
+        topRatedLocalDatasource: TopRatedLocalDatasourceImpl,
     ): TopRatedLocalDatasource
 
     @Singleton
     @Binds
     abstract fun spanishRemoteDatasource(
-        spanishRemoteDatasource: SpanishMoviesRemoteDatasourceImpl
+        spanishRemoteDatasource: SpanishMoviesRemoteDatasourceImpl,
     ): SpanishMoviesRemoteDatasource
 
     @Singleton
     @Binds
     abstract fun spanishLocalDatasource(
-        spanishLocalDatasource: SpanishLocalDatasourceImpl
+        spanishLocalDatasource: SpanishLocalDatasourceImpl,
     ): SpanishLocalDatasource
 
     @Singleton
     @Binds
     abstract fun ninetyThreeLocalDatasource(
-        ninetyThreeLocalDatasourceImpl: NinetyThreeLocalDatasourceImpl
-    ):NinetyThreeLocalDatasource
+        ninetyThreeLocalDatasourceImpl: NinetyThreeLocalDatasourceImpl,
+    ): NinetyThreeLocalDatasource
 
     @Singleton
     @Binds
     abstract fun ninetyThreeRemoteDatasource(
-        ninetyThreeRemoteDatasourceImpl: NinetythreeRemoteDatasourceImpl
-    ):NinetyThreeRemoteDatasource
+        ninetyThreeRemoteDatasourceImpl: NinetythreeRemoteDatasourceImpl,
+    ): NinetyThreeRemoteDatasource
+
+    @Singleton
+    @Binds
+    abstract fun bindsNetworkUtilInterface(
+        networkUtilsImpl: NetworkUtilsImpl,
+    ): NetworkUtils
 }

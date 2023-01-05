@@ -13,7 +13,8 @@ import com.example.moviesdatabase.R
 import com.example.moviesdatabase.databinding.MovieItemBinding
 import com.example.moviesdatabase.domain.model.MoviesDto
 
-class MovieByChipAdapter(private val movieList: List<MoviesDto>): RecyclerView.Adapter<MovieByChipAdapter.Holder>() {
+class MovieByChipAdapter(private val movieList: List<MoviesDto>) :
+    RecyclerView.Adapter<MovieByChipAdapter.Holder>() {
     private var navController: NavController? = null
     private var bundle: Bundle? = null
 
@@ -23,7 +24,7 @@ class MovieByChipAdapter(private val movieList: List<MoviesDto>): RecyclerView.A
         return Holder(view)
     }
 
-    override fun onBindViewHolder(holder:Holder, position: Int) {
+    override fun onBindViewHolder(holder: Holder, position: Int) {
         val model: MoviesDto = movieList[position]
         holder.bind(movieList[position], position)
         holder.itemView.setOnClickListener {
@@ -44,20 +45,21 @@ class MovieByChipAdapter(private val movieList: List<MoviesDto>): RecyclerView.A
             )
 
             navController?.let {
-                navController!!.navigate(R.id.action_navigation_main_movies_fragment_to_navigation_detail_fragment, bundle)
+                navController!!.navigate(R.id.action_navigation_main_movies_fragment_to_navigation_detail_fragment,
+                    bundle)
             }
         }
     }
 
     override fun getItemCount(): Int {
-        return 6
+        return movieList.size
     }
 
-    class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private var binding = MovieItemBinding.bind(itemView)
 
-        fun bind(movie: MoviesDto, position:Int){
+        fun bind(movie: MoviesDto, position: Int) {
             val url = IMAGE_URL + movie.poster_path
             Glide.with(itemView).load(url).into(binding.movieImageView)
             binding.movieTextView.text = movie.title
@@ -66,7 +68,7 @@ class MovieByChipAdapter(private val movieList: List<MoviesDto>): RecyclerView.A
 
     }
 
-    companion object{
+    companion object {
         const val IMAGE_URL = "https://image.tmdb.org/t/p/w342"
     }
 

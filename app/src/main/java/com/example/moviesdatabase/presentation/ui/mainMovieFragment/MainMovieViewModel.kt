@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.moviesdatabase.data.connectivityManager.ConnectionLiveData
 import com.example.moviesdatabase.domain.model.MoviesDto
 import com.example.moviesdatabase.domain.useCases.NinetyThreeMoviesUseCase
 import com.example.moviesdatabase.domain.useCases.SpanishMoviesUseCase
@@ -18,14 +19,18 @@ class MainMovieViewModel @Inject constructor(
     private val upcomingUseCase: UpcomingUseCase,
     private val topRatedUseCase: TopRatedUseCase,
     private val spanishMoviesUseCase: SpanishMoviesUseCase,
-    private val ninetyThreeMoviesUseCase: NinetyThreeMoviesUseCase
+    private val ninetyThreeMoviesUseCase: NinetyThreeMoviesUseCase,
 ) : ViewModel() {
+
+    var isNetworkWorking: Boolean = false
 
     private lateinit var upcomingListDto: List<MoviesDto>
     private lateinit var topRatedListDto: List<MoviesDto>
     private lateinit var spanishListDto: List<MoviesDto>
     private lateinit var ninetyThreeListDto: List<MoviesDto>
 
+    private val _isNetworkAvailable = MutableLiveData<ConnectionLiveData>()
+    val isNetworkAvailable: LiveData<ConnectionLiveData> get() = _isNetworkAvailable
 
     private val _recyclerUpcoming = MutableLiveData<List<MoviesDto>>()
     val recyclerUpcoming: LiveData<List<MoviesDto>> get() = _recyclerUpcoming
@@ -39,27 +44,36 @@ class MainMovieViewModel @Inject constructor(
     private val _recyclerNinetyThree = MutableLiveData<List<MoviesDto>>()
     val recyclerNinetyThree: LiveData<List<MoviesDto>> get() = _recyclerNinetyThree
 
-    fun getUpcomingMovies(){
+
+    fun getUpcomingMovies() {
         viewModelScope.launch {
             upcomingListDto = upcomingUseCase.invoke()
             _recyclerUpcoming.postValue(upcomingListDto)
+
         }
     }
-     fun getTopRatedMovies() {
-         viewModelScope.launch {
-             topRatedListDto = topRatedUseCase.invoke()
-             _recyclerTopRated.postValue(topRatedListDto)
 
-         }
-     }
-         fun getSpanishMovies() {
-         viewModelScope.launch {
-             spanishListDto = spanishMoviesUseCase.invoke()
-             _recyclerSpanish.postValue(spanishListDto)
-         }
+    fun getNetworkConnection() {
+        viewModelScope.launch {
+            _isNetworkAvailable.value
+        }
     }
 
-    fun getNinetyThreeMovies(){
+    fun getTopRatedMovies() {
+        viewModelScope.launch {
+            topRatedListDto = topRatedUseCase.invoke()
+            _recyclerTopRated.postValue(topRatedListDto)
+        }
+    }
+
+    fun getSpanishMovies() {
+        viewModelScope.launch {
+            spanishListDto = spanishMoviesUseCase.invoke()
+            _recyclerSpanish.postValue(spanishListDto)
+        }
+    }
+
+    fun getNinetyThreeMovies() {
         viewModelScope.launch {
             ninetyThreeListDto = ninetyThreeMoviesUseCase.invoke()
             _recyclerNinetyThree.postValue(ninetyThreeListDto)

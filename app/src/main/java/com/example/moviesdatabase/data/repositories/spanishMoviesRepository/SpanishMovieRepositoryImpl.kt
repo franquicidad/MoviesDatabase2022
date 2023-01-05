@@ -1,18 +1,20 @@
 package com.example.moviesdatabase.data.repositories.spanishMoviesRepository
 
-import android.util.Log
 import com.example.moviesdatabase.data.localDatasource.SpanishTable
 import com.example.moviesdatabase.data.localDatasource.spanishLocalDatasource.SpanishLocalDatasource
 import com.example.moviesdatabase.data.remoteDatasource.getSpanishMoviesRemoteDatasource.SpanishMoviesRemoteDatasource
+import com.example.moviesdatabase.util.NetworkUtils
 import javax.inject.Inject
 
 class SpanishMovieRepositoryImpl @Inject constructor(
     private val spanishMovieLocalDatasource: SpanishLocalDatasource,
-    private val spanishMoviesRemoteDatasource: SpanishMoviesRemoteDatasource
-):SpanishMovieRepository {
+    private val spanishMoviesRemoteDatasource: SpanishMoviesRemoteDatasource,
+    private val networkUtils: NetworkUtils,
+) : SpanishMovieRepository {
     override suspend fun getSpanishMoviesRepository(): List<SpanishTable> {
-        if (spanishMovieLocalDatasource.getSpanishDatabaseMovies().isEmpty()||
-            spanishMovieLocalDatasource.getSpanishDatabaseMovies().size < 6) {
+        if (spanishMovieLocalDatasource.getSpanishDatabaseMovies().isEmpty() ||
+            spanishMovieLocalDatasource.getSpanishDatabaseMovies().size < 6
+        ) {
             val list = spanishMoviesRemoteDatasource.getSpanishMoviesRemoteDatasource()
             spanishMovieLocalDatasource.insertSpanishDbMovies(list.movies.map { movie ->
                 SpanishTable(
@@ -35,5 +37,6 @@ class SpanishMovieRepositoryImpl @Inject constructor(
         } else {
             return spanishMovieLocalDatasource.getSpanishDatabaseMovies()
         }
+
     }
 }
