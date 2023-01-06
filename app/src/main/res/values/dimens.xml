@@ -10,4 +10,7 @@
     <dimen name="twenty_density_pixels">20dp</dimen>
     <dimen name="two_hundred_density_pixels">200dp</dimen>
     <dimen name="three_hundred">300dp</dimen>
+    <dimen name="forty_size_pixels">40sp</dimen>
+    <dimen name="forty_density_pixels">40sp</dimen>
+    <dimen name="twenty_density">20dp</dimen>
 </resources>

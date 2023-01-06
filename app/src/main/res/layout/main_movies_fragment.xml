@@ -16,41 +16,29 @@
             android:background="@color/black">
 
             <TextView
-                android:id="@+id/networkConnectionBoolean"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/no_internet"
-                android:textSize="22sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </TextView>
-
-            <TextView
                 android:id="@+id/eMovieTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="eMovie"
                 android:textColor="@color/white"
-                android:textSize="40sp"
+                android:textSize="@dimen/forty_density_pixels"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/networkConnectionBoolean" />
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <TextView
                 android:id="@+id/Upcoming"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/twenty_standard_measure_density_pixels"
                 android:layout_marginTop="@dimen/Fifty_density_pixels"
                 android:text="@string/upcoming"
                 android:textColor="@color/white"
-                android:textSize="@dimen/twenty_standard_measure"
+                android:textSize="@dimen/forty_size_pixels"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/eMovieTextView">
 
@@ -74,12 +62,12 @@
                 android:id="@+id/topRated"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/top_rated"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="@dimen/forty_size_pixels"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/recyclerUpcoming">
 
@@ -100,52 +88,37 @@
 
             </androidx.recyclerview.widget.RecyclerView>
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/movieChipGroup"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/popularTextView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/twenty_standard_measure_density_pixels"
-                android:layout_marginTop="@dimen/twenty_standard_measure_density_pixels"
+                android:layout_marginTop="@dimen/forty_size_pixels"
+                android:text="@string/popular"
+                android:textColor="@color/white"
+                android:textSize="@dimen/forty_size_pixels"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recyclerTopRated"
-                app:singleSelection="true">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/spanishChip"
-                    style="@style/ChipCustomStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/en_español"
-                    android:textSize="@dimen/twenty_standard_measure"
-                    android:textStyle="bold">
-
-                </com.google.android.material.chip.Chip>
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipByYear"
-                    style="@style/ChipCustomStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lanzadas en 1993"
-                    android:textSize="@dimen/twenty_standard_measure"
-                    android:textStyle="bold">
-
-                </com.google.android.material.chip.Chip>
-
-            </com.google.android.material.chip.ChipGroup>
+                app:layout_constraintTop_toBottomOf="@id/recyclerTopRated" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerByChip"
+                android:id="@+id/recyclerPopularMovies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/forty_size_pixels"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/movieChipGroup"
+                app:layout_constraintTop_toBottomOf="@id/popularTextView"
                 app:spanCount="2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <include
+        android:id="@+id/noInternetConnectivity"
+        layout="@layout/no_internet_connectivity"
+        android:visibility="gone">
+
+    </include>
 
 
 </FrameLayout>

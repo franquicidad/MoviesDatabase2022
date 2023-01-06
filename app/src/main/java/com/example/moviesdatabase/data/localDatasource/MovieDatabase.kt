@@ -10,9 +10,9 @@ import com.example.moviesdatabase.data.localDatasource.upcomingLocalDatasource.U
 @Database(
     entities = [
         NinetyThreeMoviesTable::class,
-    SpanishTable::class,
-    TopRatedTable::class,
-    UpcomingMovieTable::class
+        SpanishTable::class,
+        TopRatedTable::class,
+        UpcomingMovieTable::class
     ], version = 7
 )
 abstract class MovieDatabase : RoomDatabase() {
@@ -20,6 +20,7 @@ abstract class MovieDatabase : RoomDatabase() {
     abstract fun topRatedDao(): TopRatedDao
     abstract fun spanishDao(): SpanishDao
     abstract fun ninetyDao(): NinetyThreeDao
+    abstract fun popularDao(): NinetyThreeDao
 }
 
 

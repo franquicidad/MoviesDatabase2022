@@ -14,7 +14,7 @@ class TopRatedRepositoryImpl @Inject constructor(
     override suspend fun getTopRatedRepository(): List<TopRatedTable> {
         if (topRatedLocalDatasource.getTopRatedDatabaseMovies().isEmpty()) {
             val list = topRatedRemoteDatasource.getTopRatedMoviesRemoteDatasource()
-            topRatedLocalDatasource.insertTopRatedDbMovies(list.movies.map { movie ->
+            list.body()?.movies?.map { movie ->
                 TopRatedTable(
                     movie.id,
                     movie.adult,
@@ -30,11 +30,13 @@ class TopRatedRepositoryImpl @Inject constructor(
                     movie.vote_average,
                     movie.vote_count,
                 )
-            })
+            }?.let { listTopRated ->
+                topRatedLocalDatasource.insertTopRatedDbMovies(listTopRated)
+            }
             return topRatedLocalDatasource.getTopRatedDatabaseMovies()
         } else {
             return topRatedLocalDatasource.getTopRatedDatabaseMovies()
         }
-
     }
 }
+

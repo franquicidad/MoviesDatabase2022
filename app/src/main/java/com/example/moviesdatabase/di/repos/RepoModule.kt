@@ -110,7 +110,8 @@ abstract class RepoModule {
 
     @Singleton
     @Binds
-    abstract fun bindsNetworkUtilInterface(
+    abstract fun networkUtils(
         networkUtilsImpl: NetworkUtilsImpl,
     ): NetworkUtils
+
 }

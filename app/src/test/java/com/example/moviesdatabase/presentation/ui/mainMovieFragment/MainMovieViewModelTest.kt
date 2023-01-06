@@ -1,7 +1,6 @@
 package com.example.moviesdatabase.presentation.ui.mainMovieFragment
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.viewModelScope
 import com.example.moviesdatabase.data.mocks.ModelMocks
 import com.example.moviesdatabase.domain.useCases.NinetyThreeMoviesUseCase
 import com.example.moviesdatabase.domain.useCases.SpanishMoviesUseCase
@@ -19,6 +18,7 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
+
 @RunWith(MockitoJUnitRunner::class)
 class MainMovieViewModelTest {
     @Mock
@@ -36,10 +36,14 @@ class MainMovieViewModelTest {
     lateinit var mainMovieViewModel: MainMovieViewModel
 
     @get:Rule
-    var rule:InstantTaskExecutorRule = InstantTaskExecutorRule()
+    var rule: InstantTaskExecutorRule = InstantTaskExecutorRule()
+
     @Before
-    fun setUp(){
-        mainMovieViewModel = MainMovieViewModel(upcomingUseCase,topRatedUseCase,spanishMoviesUseCase,ninetyThreeMoviesUseCase)
+    fun setUp() {
+        mainMovieViewModel = MainMovieViewModel(upcomingUseCase,
+            topRatedUseCase,
+            spanishMoviesUseCase,
+            ninetyThreeMoviesUseCase)
         Dispatchers.setMain(Dispatchers.Unconfined)
     }
 
@@ -49,13 +53,13 @@ class MainMovieViewModelTest {
     }
 
     @Test
-    fun `retreive upcoming list from useCase`(){
+    fun `retreive upcoming list from useCase`() {
         runTest {
             val listMoviesDto = ModelMocks.getUpcomingMovieDto()
             Mockito.`when`(upcomingUseCase.invoke()).thenReturn(listMoviesDto)
-            mainMovieViewModel.getUpcomingMovies()
+            mainMovieViewModel.getGetMainScreenMovies()
 
             assert(mainMovieViewModel.recyclerUpcoming.value == listMoviesDto)
-            }
         }
     }
+}
