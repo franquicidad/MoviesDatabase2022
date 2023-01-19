@@ -4,13 +4,13 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.moviesdatabase.data.localDatasource.PopularTable
+import com.example.moviesdatabase.data.localDatasource.NinetyThreeMoviesTable
 
 @Dao
 interface NinetyThreeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertPopularMovies(movie: List<PopularTable>)
+    suspend fun insertNinetyThreeMovies(movie: List<NinetyThreeMoviesTable>)
 
     @Query("SELECT * FROM popular_movie")
-    suspend fun getPopularMovies(): List<PopularTable>
+    suspend fun getNinetyThreeMovies(): List<NinetyThreeMoviesTable>
 }

@@ -4,6 +4,8 @@ import com.example.moviesdatabase.data.connectivityManager.otherConnectivityMeth
 import com.example.moviesdatabase.data.connectivityManager.otherConnectivityMethods.NetworkUtilsImpl
 import com.example.moviesdatabase.data.localDatasource.ninetyThreeLocalDatasource.NinetyThreeLocalDatasource
 import com.example.moviesdatabase.data.localDatasource.ninetyThreeLocalDatasource.NinetyThreeLocalDatasourceImpl
+import com.example.moviesdatabase.data.localDatasource.popularMoviesLocalDatasource.PopularLocalDatasource
+import com.example.moviesdatabase.data.localDatasource.popularMoviesLocalDatasource.PopularLocalDatasourceImpl
 import com.example.moviesdatabase.data.localDatasource.spanishLocalDatasource.SpanishLocalDatasource
 import com.example.moviesdatabase.data.localDatasource.spanishLocalDatasource.SpanishLocalDatasourceImpl
 import com.example.moviesdatabase.data.localDatasource.topRatedLocalDatasource.TopRatedLocalDatasource
@@ -14,12 +16,16 @@ import com.example.moviesdatabase.data.remoteDatasource.getSpanishMoviesRemoteDa
 import com.example.moviesdatabase.data.remoteDatasource.getSpanishMoviesRemoteDatasource.SpanishMoviesRemoteDatasourceImpl
 import com.example.moviesdatabase.data.remoteDatasource.ninetyThreeRemoteDatasource.NinetyThreeRemoteDatasource
 import com.example.moviesdatabase.data.remoteDatasource.ninetyThreeRemoteDatasource.NinetythreeRemoteDatasourceImpl
+import com.example.moviesdatabase.data.remoteDatasource.popularMovies.PopularMoviesRemoteDatasource
+import com.example.moviesdatabase.data.remoteDatasource.popularMovies.PopularMoviesRemoteDatasourceImpl
 import com.example.moviesdatabase.data.remoteDatasource.topRatedRemoteDatasource.TopRatedRemoteDatasource
 import com.example.moviesdatabase.data.remoteDatasource.topRatedRemoteDatasource.TopRatedRemoteDatasourceImpl
 import com.example.moviesdatabase.data.remoteDatasource.upcomingRemoteDatasource.UpcomingRemoteDatasource
 import com.example.moviesdatabase.data.remoteDatasource.upcomingRemoteDatasource.UpcomingRemoteDatasourceImpl
 import com.example.moviesdatabase.data.repositories.ninetyThreeRepository.NinetyThreeRepository
 import com.example.moviesdatabase.data.repositories.ninetyThreeRepository.NinetyThreeRepositoryImpl
+import com.example.moviesdatabase.data.repositories.popularRepository.PopularMovieRepository
+import com.example.moviesdatabase.data.repositories.popularRepository.PopularMovieRepositoryImpl
 import com.example.moviesdatabase.data.repositories.spanishMoviesRepository.SpanishMovieRepository
 import com.example.moviesdatabase.data.repositories.spanishMoviesRepository.SpanishMovieRepositoryImpl
 import com.example.moviesdatabase.data.repositories.topRatedRepository.TopRatedRepository
@@ -62,9 +68,27 @@ abstract class RepoModule {
 
     @Singleton
     @Binds
+    abstract fun providePopularRepo(
+        popularMovieRepositoryImpl: PopularMovieRepositoryImpl,
+    ): PopularMovieRepository
+
+    @Singleton
+    @Binds
     abstract fun provideUpcomingLocalDatasource(
         upcomingLocalDatasourceImpl: UpcomingLocalDatasourceImpl,
     ): UpcominglocalDatasource
+
+    @Singleton
+    @Binds
+    abstract fun providePopularLocalDatasource(
+        popularLocalDatasourceImpl: PopularLocalDatasourceImpl,
+    ): PopularLocalDatasource
+
+    @Singleton
+    @Binds
+    abstract fun providePopularRemoteDatasource(
+        remotePopularMoviesRemoteDatasourceImpl: PopularMoviesRemoteDatasourceImpl,
+    ): PopularMoviesRemoteDatasource
 
     @Singleton
     @Binds

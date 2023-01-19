@@ -4,6 +4,8 @@ import com.example.data.api.MovieService
 import com.example.moviesdatabase.data.localDatasource.MovieDatabase
 import com.example.moviesdatabase.data.localDatasource.ninetyThreeLocalDatasource.NinetyThreeLocalDatasource
 import com.example.moviesdatabase.data.localDatasource.ninetyThreeLocalDatasource.NinetyThreeLocalDatasourceImpl
+import com.example.moviesdatabase.data.localDatasource.popularMoviesLocalDatasource.PopularLocalDatasource
+import com.example.moviesdatabase.data.localDatasource.popularMoviesLocalDatasource.PopularLocalDatasourceImpl
 import com.example.moviesdatabase.data.localDatasource.spanishLocalDatasource.SpanishLocalDatasource
 import com.example.moviesdatabase.data.localDatasource.spanishLocalDatasource.SpanishLocalDatasourceImpl
 import com.example.moviesdatabase.data.localDatasource.topRatedLocalDatasource.TopRatedLocalDatasource
@@ -59,6 +61,14 @@ object RoomModule {
         room: MovieDatabase,
     ): SpanishLocalDatasource {
         return SpanishLocalDatasourceImpl(room)
+    }
+
+    @Singleton
+    @Provides
+    fun providePopularMoviesLocalDatasource(
+        room: MovieDatabase,
+    ): PopularLocalDatasource {
+        return PopularLocalDatasourceImpl(room)
     }
 
     @Singleton

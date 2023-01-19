@@ -43,4 +43,8 @@ object ProvideDatabase {
     @Singleton
     @Provides
     fun provideNinetyDao(db: MovieDatabase) = db.ninetyDao()
+
+    @Singleton
+    @Provides
+    fun providePopularMoviesDao(db: MovieDatabase) = db.popularDao()
 }

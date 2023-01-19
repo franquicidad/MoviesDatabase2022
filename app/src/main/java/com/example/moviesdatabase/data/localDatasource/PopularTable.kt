@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "popular_movie")
 data class PopularTable(
     @PrimaryKey(autoGenerate = false)
-    val id: String?,
+    val id: Int?,
     val adult: Boolean?,
     val backdrop_path: String?,
     val original_language: String?,

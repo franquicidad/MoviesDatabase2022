@@ -13,4 +13,5 @@
     <dimen name="forty_size_pixels">40sp</dimen>
     <dimen name="forty_density_pixels">40sp</dimen>
     <dimen name="twenty_density">20dp</dimen>
+    <dimen name="twenty_two_standard">22sp</dimen>
 </resources>

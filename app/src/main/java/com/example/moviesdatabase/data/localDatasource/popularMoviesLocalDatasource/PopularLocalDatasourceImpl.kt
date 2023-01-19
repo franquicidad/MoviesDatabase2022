@@ -2,8 +2,9 @@ package com.example.moviesdatabase.data.localDatasource.popularMoviesLocalDataso
 
 import com.example.moviesdatabase.data.localDatasource.MovieDatabase
 import com.example.moviesdatabase.data.localDatasource.PopularTable
+import javax.inject.Inject
 
-class PopularLocalDatasourceImpl(
+class PopularLocalDatasourceImpl @Inject constructor(
     private val room: MovieDatabase,
 ) : PopularLocalDatasource {
     override suspend fun insertPopularMovies(popularTable: List<PopularTable>) {

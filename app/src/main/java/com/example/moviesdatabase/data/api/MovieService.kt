@@ -1,10 +1,13 @@
 package com.example.data.api
 
+import com.example.moviesdatabase.data.model.Cast
 import com.example.moviesdatabase.data.model.MovieResponse
+import com.example.moviesdatabase.data.model.SimilarMoviesResponse
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MovieService {
@@ -48,6 +51,20 @@ interface MovieService {
         @Query("api_key") api_key: String?,
         @Query("language") language: String?,
     ): Response<MovieResponse>
+
+    @GET("{movie}/{movie_id}/credits")
+    suspend fun getActorsByMovie(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") api_key: String,
+    ): Cast
+
+    @GET("{movie}/{movie_id}/similar")
+    suspend fun getSimilarMovies(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") api_key: String,
+        @Query("language") language: String = "en-US",
+        @Query("page") page: Int?,
+    ): SimilarMoviesResponse
 }
 
 val retrofit = Retrofit.Builder()

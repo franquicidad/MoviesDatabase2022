@@ -1,5 +1,6 @@
 package com.example.moviesdatabase.presentation.ui.mainMovieFragment
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,13 @@ class MainMovieFragment : Fragment() {
 
     private val viewModel: MainMovieViewModel by viewModels()
 
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        viewModel.isRotated.observe(viewLifecycleOwner) {
+            it
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,7 +39,8 @@ class MainMovieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getGetMainScreenMovies()
+
+        //a viewModel.getGetMainScreenMovies()
 
         viewModel.recyclerUpcoming.observe(viewLifecycleOwner) { upcomingList ->
             binding.recyclerUpcoming.apply {
@@ -51,6 +60,10 @@ class MainMovieFragment : Fragment() {
             } else {
                 binding.noInternetConnectivity.root.visibility = View.VISIBLE
             }
+        }
+
+        viewModel.recyclerPopularMovies.observe(viewLifecycleOwner) { popularList ->
+            binding.recyclerPopularMovies.adapter = MovieAdapter(popularList)
         }
     }
 

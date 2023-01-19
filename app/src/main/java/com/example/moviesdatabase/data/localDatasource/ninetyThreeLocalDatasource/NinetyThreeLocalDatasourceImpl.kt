@@ -8,10 +8,10 @@ class NinetyThreeLocalDatasourceImpl @Inject constructor(
     private val room: MovieDatabase,
 ) : NinetyThreeLocalDatasource {
     override suspend fun insertNinetyThreeDbMovies(ninetyThreeMovies: List<NinetyThreeMoviesTable>) {
-        room.ninetyDao().insertPopularMovies(ninetyThreeMovies)
+        room.ninetyDao().insertNinetyThreeMovies(ninetyThreeMovies)
     }
 
     override suspend fun getNinetyThreeDatabaseMovies(): List<NinetyThreeMoviesTable> {
-        return room.ninetyDao().getPopularMovies()
+        return room.ninetyDao().getNinetyThreeMovies()
     }
 }
